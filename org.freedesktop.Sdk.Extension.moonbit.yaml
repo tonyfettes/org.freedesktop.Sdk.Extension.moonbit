@@ -1,0 +1,53 @@
+id: org.freedesktop.Sdk.Extension.moonbit
+branch: '23.08'
+runtime: org.freedesktop.Sdk
+build-extension: true
+sdk: org.freedesktop.Sdk
+runtime-version: '23.08'
+separate-locales: false
+appstream-compose: false
+modules:
+  - name: moonbit
+    buildsystem: simple
+    sources:
+      - type: archive
+        only-arches:
+          - x86_64
+        url: https://cli.moonbitlang.com/binaries/latest/moonbit-linux-x86_64.tar.gz
+        sha256: 8fbf27ad38555ebc4efce45a66c48ccef4f9b7b4505e12be05388489073521ba
+    build-commands:
+      - install -d /usr/lib/sdk/moonbit/bin
+      - chmod a+x moon*
+      - cp -rpv * /usr/lib/sdk/moonbit/bin/
+
+  - name: core
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://cli.moonbitlang.com/cores/core-latest.tar.gz
+        sha256: cecba4b88d79eabaae74dd1be21e67e7a33fea35e6c79881a4260f74f036c2de
+    build-commands:
+      - install -d /usr/lib/sdk/moonbit/lib
+      - cp -rpv * /usr/lib/sdk/moonbit/lib/
+      - MOON_HOME=/usr/lib/sdk/moonbit PATH=/usr/lib/sdk/moonbit/bin moon bundle --all --source-dir /usr/lib/sdk/moonbit/lib/core
+
+  - name: scripts
+    sources:
+      - type: script
+        commands:
+          - export MOON_HOME=/usr/lib/sdk/moonbit
+          - export PATH=$PATH:$MOON_HOME/bin
+        dest-filename: enable.sh
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 enable.sh /usr/lib/sdk/moonbit/enable.sh
+
+  - name: metainfo
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 org.freedesktop.Sdk.Extension.moonbit.metainfo.xml ${FLATPAK_DEST}/share/metainfo/org.freedesktop.Sdk.Extension.moonbit.metainfo.xml
+      - appstream-compose  --basename=org.freedesktop.Sdk.Extension.moonbit --prefix=${FLATPAK_DEST}
+        --origin=flatpak org.freedesktop.Sdk.Extension.moonbit
+    sources:
+      - type: file
+        path: org.freedesktop.Sdk.Extension.moonbit.metainfo.xml
