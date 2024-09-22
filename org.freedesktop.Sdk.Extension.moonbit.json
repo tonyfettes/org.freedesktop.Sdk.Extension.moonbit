@@ -1,1 +1,93 @@
-{"id": "org.freedesktop.Sdk.Extension.moonbit", "branch": "23.08", "runtime": "org.freedesktop.Sdk", "build-extension": true, "sdk": "org.freedesktop.Sdk", "runtime-version": "23.08", "separate-locales": false, "appstream-compose": false, "modules": [{"name": "moonbit", "buildsystem": "simple", "sources": [{"type": "archive", "only-arches": ["x86_64"], "url": "https://cli.moonbitlang.com/binaries/latest/moonbit-linux-x86_64.tar.gz", "sha256": "5af1b6accc91c84934006aa29eb3c115de20095c3b16f7f088b103c923f4c397"}], "build-commands": ["install -d /usr/lib/sdk/moonbit/bin", "chmod a+x moon*", "cp -rpv * /usr/lib/sdk/moonbit/bin/"]}, {"name": "core", "buildsystem": "simple", "sources": [{"type": "archive", "url": "https://cli.moonbitlang.com/cores/core-latest.tar.gz", "sha256": "b03ecceb8dd1f065d3beb6c475ae4cb622478549169ceca27239522ba29e189f"}], "build-commands": ["install -d /usr/lib/sdk/moonbit/lib", "cp -rpv * /usr/lib/sdk/moonbit/lib/", "MOON_HOME=/usr/lib/sdk/moonbit PATH=/usr/lib/sdk/moonbit/bin moon bundle --all --source-dir /usr/lib/sdk/moonbit/lib/core"]}, {"name": "scripts", "sources": [{"type": "script", "commands": ["export MOON_HOME=/usr/lib/sdk/moonbit", "export PATH=$PATH:$MOON_HOME/bin"], "dest-filename": "enable.sh"}], "buildsystem": "simple", "build-commands": ["install -Dm755 enable.sh /usr/lib/sdk/moonbit/enable.sh"]}, {"name": "metainfo", "buildsystem": "simple", "build-commands": ["install -Dm644 org.freedesktop.Sdk.Extension.moonbit.metainfo.xml ${FLATPAK_DEST}/share/metainfo/org.freedesktop.Sdk.Extension.moonbit.metainfo.xml", "appstream-compose  --basename=org.freedesktop.Sdk.Extension.moonbit --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.Sdk.Extension.moonbit"], "sources": [{"type": "file", "path": "org.freedesktop.Sdk.Extension.moonbit.metainfo.xml"}]}]}
+{
+  "id": "org.freedesktop.Sdk.Extension.moonbit",
+  "branch": "23.08",
+  "runtime": "org.freedesktop.Sdk",
+  "build-extension": true,
+  "sdk": "org.freedesktop.Sdk",
+  "runtime-version": "23.08",
+  "separate-locales": false,
+  "appstream-compose": false,
+  "modules": [
+    {
+      "name": "moonbit",
+      "buildsystem": "simple",
+      "sources": [
+        {
+          "type": "archive",
+          "only-arches": [
+            "x86_64"
+          ],
+          "url": "https://cli.moonbitlang.com/binaries/latest/moonbit-linux-x86_64.tar.gz",
+          "sha256": "153c473e41a20bcf3d54d2064cdcca58db0a299e0f769eafc0bff9a2d5c4cfd0"
+        }
+      ],
+      "build-commands": [
+        "install -d /usr/lib/sdk/moonbit/bin",
+        "chmod a+x moon*",
+        "cp -rpv * /usr/lib/sdk/moonbit/bin/"
+      ]
+    },
+    {
+      "name": "core",
+      "buildsystem": "simple",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://cli.moonbitlang.com/cores/core-latest.tar.gz",
+          "sha256": "323df7152bfcfaa01d9825d4680388ddcb7b773e49f341ae33f9d63c65132faa"
+        }
+      ],
+      "build-commands": [
+        "install -d /usr/lib/sdk/moonbit/lib",
+        "cp -rpv * /usr/lib/sdk/moonbit/lib/",
+        "MOON_HOME=/usr/lib/sdk/moonbit PATH=/usr/lib/sdk/moonbit/bin moon bundle --all --source-dir /usr/lib/sdk/moonbit/lib/core"
+      ]
+    },
+    {
+      "name": "registry",
+      "buildsystem": "simple",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://mooncakes.io/git/index",
+          "branch": "main"
+        }
+      ],
+      "build-commands": [
+        "install -d /usr/lib/sdk/moonbit/registry/index",
+        "cp -rpv * /usr/lib/sdk/moonbit/registry/index"
+      ]
+    },
+    {
+      "name": "scripts",
+      "sources": [
+        {
+          "type": "script",
+          "commands": [
+            "export MOON_HOME=/usr/lib/sdk/moonbit",
+            "export PATH=$PATH:$MOON_HOME/bin"
+          ],
+          "dest-filename": "enable.sh"
+        }
+      ],
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -Dm755 enable.sh /usr/lib/sdk/moonbit/enable.sh"
+      ]
+    },
+    {
+      "name": "metainfo",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -Dm644 org.freedesktop.Sdk.Extension.moonbit.metainfo.xml ${FLATPAK_DEST}/share/metainfo/org.freedesktop.Sdk.Extension.moonbit.metainfo.xml",
+        "appstream-compose  --basename=org.freedesktop.Sdk.Extension.moonbit --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.Sdk.Extension.moonbit"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "org.freedesktop.Sdk.Extension.moonbit.metainfo.xml"
+        }
+      ]
+    }
+  ]
+}
