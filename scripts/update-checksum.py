@@ -37,13 +37,15 @@ def main():
         if 'sources' not in module:
             continue
         for source in module['sources']:
+            if 'type' in source and source['type'] != 'archive':
+                continue
             if 'url' not in source:
                 continue
             file = download(source['url'])
             sha256sum = sha256(file)
             source['sha256'] = sha256sum
     with manifest_path.open('w') as f:
-        f.write(json.dumps(manifest))
+        f.write(json.dumps(manifest, indent=2))
 
 if __name__ == "__main__":
     main()
