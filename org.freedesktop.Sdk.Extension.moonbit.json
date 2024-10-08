@@ -76,6 +76,21 @@
       ]
     },
     {
+      "name": "wit-bindgen",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/tonyfettes/wit-bindgen",
+          "branch": "moonbit-reorganize"
+        }
+      ],
+      "buildsystem": "simple",
+      "build-commands": [
+        "cargo build --release",
+        "install target/release/wit-bindgen /usr/lib/sdk/moonbit/bin"
+      ]
+    },
+    {
       "name": "metainfo",
       "buildsystem": "simple",
       "build-commands": [
