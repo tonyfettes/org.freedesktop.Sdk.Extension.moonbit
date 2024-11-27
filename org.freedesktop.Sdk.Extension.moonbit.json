@@ -18,7 +18,7 @@
             "x86_64"
           ],
           "url": "https://cli.moonbitlang.com/binaries/latest/moonbit-linux-x86_64.tar.gz",
-          "sha256": "3124e489cae4042aad0354904613a9da781909f60610d8d4efcc263a015bbcae"
+          "sha256": "005eaf1292934f2175845fd0c7b7f6cee92507495703c7877ca2909b17d3080b"
         }
       ],
       "build-commands": [
@@ -34,7 +34,7 @@
         {
           "type": "archive",
           "url": "https://cli.moonbitlang.com/cores/core-latest.tar.gz",
-          "sha256": "c111d3249b145920a315fef7d9e1a971de0dc633e421480369312a1a9e23a204"
+          "sha256": "6bf1dd3e4ff40064bacea6c87f3400943ac9aacb52a8b3a999e8756aa2890c18"
         }
       ],
       "build-commands": [
@@ -73,21 +73,6 @@
       "buildsystem": "simple",
       "build-commands": [
         "install -Dm755 enable.sh /usr/lib/sdk/moonbit/enable.sh"
-      ]
-    },
-    {
-      "name": "wit-bindgen",
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://github.com/tonyfettes/wit-bindgen",
-          "branch": "moonbit-reorganize"
-        }
-      ],
-      "buildsystem": "simple",
-      "build-commands": [
-        "cargo build --release",
-        "install target/release/wit-bindgen /usr/lib/sdk/moonbit/bin"
       ]
     },
     {
