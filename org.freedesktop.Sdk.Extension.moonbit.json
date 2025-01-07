@@ -18,13 +18,17 @@
             "x86_64"
           ],
           "url": "https://cli.moonbitlang.com/binaries/latest/moonbit-linux-x86_64.tar.gz",
-          "sha256": "662c4bda0f6b9c97b6056495950b2eb5d11f9a1f4fc45e4867a98d350c02f91f"
+          "sha256": "8da645e4223f10175a2b061412296382711e66f989020f88482a37c5815497e4"
         }
       ],
       "build-commands": [
         "install -d /usr/lib/sdk/moonbit/bin",
-        "chmod a+x moon*",
-        "cp -rpv * /usr/lib/sdk/moonbit/bin/"
+        "install -d /usr/lib/sdk/moonbit/lib",
+        "install -d /usr/lib/sdk/moonbit/include",
+        "chmod a+x bin/moon*",
+        "cp -rpv bin/* /usr/lib/sdk/moonbit/bin/",
+        "cp -rpv lib/* /usr/lib/sdk/moonbit/lib/",
+        "cp -rpv include/* /usr/lib/sdk/moonbit/include/"
       ]
     },
     {
@@ -34,7 +38,7 @@
         {
           "type": "archive",
           "url": "https://cli.moonbitlang.com/cores/core-latest.tar.gz",
-          "sha256": "77be60314438539796428da165139bbfd25963e3b324331f6d06ecf908de83d1"
+          "sha256": "d9995fc7a5860c3b79e7f275edc164a2fd0d02d6c27af8f37c81b94b5534daab"
         }
       ],
       "build-commands": [
