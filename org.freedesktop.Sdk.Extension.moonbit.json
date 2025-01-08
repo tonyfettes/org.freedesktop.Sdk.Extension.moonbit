@@ -18,7 +18,7 @@
             "x86_64"
           ],
           "url": "https://cli.moonbitlang.com/binaries/latest/moonbit-linux-x86_64.tar.gz",
-          "sha256": "8da645e4223f10175a2b061412296382711e66f989020f88482a37c5815497e4"
+          "sha256": "509dce67ecaa0f9eafab957fd9812ed14faf34265d791e93575c40e25f198f4c"
         }
       ],
       "build-commands": [
@@ -38,7 +38,7 @@
         {
           "type": "archive",
           "url": "https://cli.moonbitlang.com/cores/core-latest.tar.gz",
-          "sha256": "d9995fc7a5860c3b79e7f275edc164a2fd0d02d6c27af8f37c81b94b5534daab"
+          "sha256": "f405d8e538a2d3dd39538f26d316d46030556c093d09a951a64ee61863a44dad"
         }
       ],
       "build-commands": [
