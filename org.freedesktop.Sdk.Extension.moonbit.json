@@ -26,6 +26,7 @@
         "install -d /usr/lib/sdk/moonbit/lib",
         "install -d /usr/lib/sdk/moonbit/include",
         "chmod a+x bin/moon*",
+        "chmod a+x bin/internal/*",
         "cp -rpv bin/* /usr/lib/sdk/moonbit/bin/",
         "cp -rpv lib/* /usr/lib/sdk/moonbit/lib/",
         "cp -rpv include/* /usr/lib/sdk/moonbit/include/"
